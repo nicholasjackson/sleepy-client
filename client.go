@@ -16,7 +16,7 @@ func (h *HTTP) POST(uri string, data []byte) (*http.Response, error) {
 }
 
 // GET some stuff to a URL
-func (h *HTTP) GET(uri string, data []byte) (*http.Response, error) {
+func (h *HTTP) GET(uri string) (*http.Response, error) {
 
 	time.Sleep(30 * time.Second)
 	return &http.Response{}, nil
