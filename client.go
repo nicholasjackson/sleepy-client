@@ -12,5 +12,12 @@ type HTTP struct{}
 func (h *HTTP) POST(uri string, data []byte) (*http.Response, error) {
 
 	time.Sleep(30 * time.Second)
-	return *http.Response{}, nil
+	return &http.Response{}, nil
+}
+
+// GET some stuff to a URL
+func (h *HTTP) GET(uri string, data []byte) (*http.Response, error) {
+
+	time.Sleep(30 * time.Second)
+	return &http.Response{}, nil
 }
