@@ -1,6 +1,7 @@
 package client
 
 import (
+	"bytes"
 	"net/http"
 	"time"
 )
@@ -10,7 +11,7 @@ type HTTP struct{}
 
 // POST some stuff to a URL
 func (h *HTTP) POST(uri string, data []byte) (*http.Response, error) {
-	r, err := http.NewRequest(http.MethodPost, uri, data)
+	r, err := http.NewRequest(http.MethodPost, uri, bytes.NewReader(data))
 	if err != nil {
 		return nil, err
 	}
@@ -19,8 +20,8 @@ func (h *HTTP) POST(uri string, data []byte) (*http.Response, error) {
 }
 
 // GET some stuff to a URL
-func (h *HTTP) GET(uri string, data []byte) (*http.Response, error) {
-	r, err := http.NewRequest(http.MethodPost, uri, data)
+func (h *HTTP) GET(uri string) (*http.Response, error) {
+	r, err := http.NewRequest(http.MethodGet, uri, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -42,5 +43,5 @@ func (h *HTTP) Do(r *http.Request) (*http.Response, error) {
 		time.Sleep(30 * time.Second)
 	}
 
-	return &http.Response{}, nil
+	return http.DefaultClient.Do(r)
 }
