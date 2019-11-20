@@ -1,5 +1,5 @@
 // +build prod
 
-package client
+package sleepy
 
 var isProd = true
